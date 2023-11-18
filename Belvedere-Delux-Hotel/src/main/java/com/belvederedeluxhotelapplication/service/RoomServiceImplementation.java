@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 @Service
 @RequiredArgsConstructor
-public class RoomServiceImplementation {
+public class RoomServiceImplementation implements RoomService {
 
     private final RoomRepository roomRepository;
     @Override

@@ -21,7 +21,7 @@ public class BookedRoomDto {
     private int totalNumberOfGuests;
     private String bookingConfirmationCode;
 
-    private RoomResponse room;
+    private RoomDto room;
 
     public BookedRoomDto(Long id, LocalDate checkInDate,
                            LocalDate checkOutDate, String bookingConfirmationCode) {

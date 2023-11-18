@@ -1,7 +1,6 @@
 package com.belvederedeluxhotelapplication.controller;
 
 import com.belvederedeluxhotelapplication.dto.RoomDto;
-import com.belvederedeluxhotelapplication.dto.RoomResponse;
 import com.belvederedeluxhotelapplication.model.Room;
 import com.belvederedeluxhotelapplication.service.RoomService;
 import lombok.RequiredArgsConstructor;
