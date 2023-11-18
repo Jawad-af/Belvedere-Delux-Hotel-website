@@ -1,4 +1,2 @@
-package com.belvederedeluxhotelapplication.service;
-
-public interface RoomService {
+package com.belvederedeluxhotelapplication.service;public interface RoomService {
 }
