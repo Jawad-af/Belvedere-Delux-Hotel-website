@@ -1,2 +1,4 @@
-package com.belvederedeluxhotelapplication.model;public class Room {
+package com.belvederedeluxhotelapplication.model;
+
+public class Room {
 }
