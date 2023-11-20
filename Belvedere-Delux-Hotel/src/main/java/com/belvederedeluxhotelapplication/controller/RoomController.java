@@ -39,4 +39,5 @@ public class RoomController {
     public List<String> goToRoomTypes(){
          return roomService.getRoomTypes();
     }
+
 }

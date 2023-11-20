@@ -14,4 +14,6 @@ public interface RoomService {
 
     Room addNewRoom(String roomType, BigDecimal roomPrice, MultipartFile photo) throws IOException, SQLException;
     List<String> getRoomTypes();
+
+
 }
