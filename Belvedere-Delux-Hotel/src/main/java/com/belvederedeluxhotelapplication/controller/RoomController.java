@@ -1,6 +1,7 @@
 package com.belvederedeluxhotelapplication.controller;
 
 import com.belvederedeluxhotelapplication.dto.RoomDto;
+import com.belvederedeluxhotelapplication.exceptions.ErrorFetchingTheImageSource;
 import com.belvederedeluxhotelapplication.model.Room;
 import com.belvederedeluxhotelapplication.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -36,8 +38,25 @@ public class RoomController {
     }
 
     @GetMapping("/room-types")
-    public List<String> goToRoomTypes(){
-         return roomService.getRoomTypes();
+    public List<String> goToRoomTypes() {
+        return roomService.getRoomTypes();
     }
 
+    @GetMapping("/all-rooms")
+    public ResponseEntity<List<RoomDto>> getAllRooms() {
+        List<Room> rooms = roomService.getAllRooms();
+        List<RoomDto> roomResponses = new ArrayList<>();
+        for (Room room : rooms) {
+            try {
+                byte[] photoBytes = room.getPhoto().getBytes(1, (int) room.getPhoto().length());
+                String image = new String(photoBytes);
+
+                RoomDto roomDto = new RoomDto(room.getId(), room.getRoomType(), room.getRoomPrice(),
+                        room.isBooked(), photoBytes, room.getBookings());
+            } catch (Exception exception) {
+                throw new ErrorFetchingTheImageSource("Unable to fetch the image source from the database");
+            }
+        }
+        return ResponseEntity.ok(roomResponses);
+    }
 }

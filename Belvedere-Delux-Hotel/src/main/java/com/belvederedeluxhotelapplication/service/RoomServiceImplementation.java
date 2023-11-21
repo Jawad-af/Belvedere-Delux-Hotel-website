@@ -1,8 +1,12 @@
 package com.belvederedeluxhotelapplication.service;
 
+import com.belvederedeluxhotelapplication.dto.RoomDto;
 import com.belvederedeluxhotelapplication.model.Room;
 import com.belvederedeluxhotelapplication.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,13 +15,16 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImplementation implements RoomService {
 
+    @Autowired
     private final RoomRepository roomRepository;
+
     @Override
     public Room addNewRoom(
             String roomType,
@@ -41,5 +48,9 @@ public class RoomServiceImplementation implements RoomService {
         return roomRepository.findDistinctRoomTypes();
     }
 
+    @Override
+    public List<Room> getAllRooms() {
+        return roomRepository.findAll();
+    }
 
 }
