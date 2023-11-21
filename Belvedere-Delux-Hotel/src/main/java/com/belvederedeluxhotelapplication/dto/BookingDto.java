@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookedRoomDto {
+public class BookingDto {
 
     private Long Id;
     private LocalDate checkInDate;
@@ -23,7 +23,7 @@ public class BookedRoomDto {
 
     private RoomDto room;
 
-    public BookedRoomDto(Long id, LocalDate checkInDate,
+    public BookingDto(Long id, LocalDate checkInDate,
                            LocalDate checkOutDate, String bookingConfirmationCode) {
         Id = id;
         this.checkInDate = checkInDate;

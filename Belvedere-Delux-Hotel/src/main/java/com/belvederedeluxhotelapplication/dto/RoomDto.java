@@ -1,6 +1,6 @@
 package com.belvederedeluxhotelapplication.dto;
 
-import com.belvederedeluxhotelapplication.model.BookedRoom;
+import com.belvederedeluxhotelapplication.model.Booking;
 import lombok.Data;
 import org.apache.tomcat.util.codec.binary.Base64;
 
@@ -15,7 +15,7 @@ public class RoomDto {
     private BigDecimal roomPrice;
     private boolean isBooked;
     private String photo;
-    private List<BookedRoom> bookings;
+    private List<BookingDto> bookings;
 
     public RoomDto(Long id, String roomType, BigDecimal roomPrice) {
         this.id = id;
@@ -24,7 +24,7 @@ public class RoomDto {
     }
 
     public RoomDto(Long id, String roomType, BigDecimal roomPrice,
-                        boolean isBooked, byte[] photoBytes, List<BookedRoom> bookings) {
+                        boolean isBooked, byte[] photoBytes, List<BookingDto> bookings) {
         this.id = id;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
