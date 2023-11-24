@@ -69,7 +69,7 @@ public class RoomController {
     }
 
     private RoomDto getRoomResponse(Room room) {
-        List<Booking> bookings = getRoomBookings(room);
+        List<Booking> bookings = getRoomBookingsByRoomId(room.getId());
         List<BookingDto> bookingDto = bookings.stream().map(
                 booking -> new BookingDto(booking.getBookingId(), booking.getCheckInDate(),
                         booking.getCheckOutDate(), booking.getBookingConfirmationCode())
@@ -87,7 +87,8 @@ public class RoomController {
         return new RoomDto(room.getId(), room.getRoomType(),
                 room.getRoomPrice(), room.isBooked(), photoBytes, bookingDto);
     }
-    private List<Booking> getRoomBookings(Room room) {
-        return bookingService.findByRoomId(room.getId());
+
+    private List<Booking> getRoomBookingsByRoomId(Long roomId) {
+        return bookingService.getAllBookingsByRoomId(roomId);
     }
 }

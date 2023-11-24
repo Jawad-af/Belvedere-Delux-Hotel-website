@@ -12,7 +12,7 @@ public class BookingServiceImplementation implements BookingService {
     BookingRepository bookingRepository;
 
     @Override
-    public List<Booking> findByRoomId(Long roomId) {
+    public List<Booking> getAllBookingsByRoomId(Long roomId) {
         return bookingRepository.findByRoomId(roomId);
     }
 }

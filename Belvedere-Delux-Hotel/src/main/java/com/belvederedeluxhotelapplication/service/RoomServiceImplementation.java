@@ -53,7 +53,7 @@ public class RoomServiceImplementation implements RoomService {
 
     @Override
     public byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException {
-        Optional<Room> room = roomRepository.findRoomPhotoById(roomId);
+        Optional<Room> room = roomRepository.findById(roomId);
         if (room.isEmpty()) {
             throw new ErrorFetchingTheSource("Image not found");
         }
