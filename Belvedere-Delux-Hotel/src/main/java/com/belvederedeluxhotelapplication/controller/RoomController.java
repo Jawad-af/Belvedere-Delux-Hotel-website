@@ -36,12 +36,12 @@ public class RoomController {
 
     @PostMapping("/add/new-room")
     public ResponseEntity<RoomDto> addNewRoom(
+            @RequestParam("photo") MultipartFile photo,
             @RequestParam("roomType") String roomType,
-            @RequestParam("roomPrice") BigDecimal roomPrice,
-            @RequestParam("photo") MultipartFile photo
+            @RequestParam("roomPrice") BigDecimal roomPrice
     ) throws SQLException, IOException {
 
-        Room savedRoom = roomService.addNewRoom(roomType, roomPrice, photo);
+        Room savedRoom = roomService.addNewRoom(photo, roomType, roomPrice);
         RoomDto response =
                 new RoomDto(savedRoom.getId(), savedRoom.getRoomType(), savedRoom.getRoomPrice());
         return ResponseEntity.ok(response);
@@ -49,7 +49,7 @@ public class RoomController {
 
     @GetMapping("/room-types")
     public List<String> goToRoomTypes() {
-        return roomService.getRoomTypes();
+        return roomService.getAllRoomTypes();
     }
 
     @GetMapping("/all-rooms")
@@ -69,7 +69,7 @@ public class RoomController {
     }
 
     private RoomDto getRoomResponse(Room room) {
-        List<Booking> bookings = getRoomBookingsByRoomId(room.getId());
+        List<Booking> bookings = getAllBookingsByRoomId(room.getId());
         List<BookingDto> bookingDto = bookings.stream().map(
                 booking -> new BookingDto(booking.getBookingId(), booking.getCheckInDate(),
                         booking.getCheckOutDate(), booking.getBookingConfirmationCode())
@@ -88,7 +88,7 @@ public class RoomController {
                 room.getRoomPrice(), room.isBooked(), photoBytes, bookingDto);
     }
 
-    private List<Booking> getRoomBookingsByRoomId(Long roomId) {
+    private List<Booking> getAllBookingsByRoomId(Long roomId) {
         return bookingService.getAllBookingsByRoomId(roomId);
     }
 }

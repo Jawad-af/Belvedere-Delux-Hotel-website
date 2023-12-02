@@ -21,13 +21,13 @@ import java.util.Optional;
 public class RoomServiceImplementation implements RoomService {
 
     @Autowired
-    private final RoomRepository roomRepository;
+    private RoomRepository roomRepository;
 
     @Override
     public Room addNewRoom(
+            MultipartFile photo,
             String roomType,
-            BigDecimal roomPrice,
-            MultipartFile photo
+            BigDecimal roomPrice
     ) throws IOException, SQLException {
 
         Room room = new Room();
@@ -42,7 +42,7 @@ public class RoomServiceImplementation implements RoomService {
     }
 
     @Override
-    public List<String> getRoomTypes() {
+    public List<String> getAllRoomTypes() {
         return roomRepository.findDistinctRoomTypes();
     }
 
@@ -63,6 +63,11 @@ public class RoomServiceImplementation implements RoomService {
         }
 
         return null;
+    }
+
+    @Override
+    public Optional<Room> getRoomById(Long roomId) {
+        return Optional.of(roomRepository.findById(roomId).get());
     }
 
 }
