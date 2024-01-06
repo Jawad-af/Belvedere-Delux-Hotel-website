@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { getRoomTypes } from "../utils/ApiRequests"
+import PropTypes from 'prop-types'
 
 const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 	const [roomTypes, setRoomTypes] = useState([""])
@@ -68,6 +69,11 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 			)}
 		</>
 	)
+}
+
+RoomTypeSelector.propTypes = {
+	handleRoomInputChange: PropTypes.node, 
+	newRoom: PropTypes.node
 }
 
 export default RoomTypeSelector

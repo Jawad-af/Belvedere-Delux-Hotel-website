@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { addRoom } from "../utils/ApiRequests"
 import RoomTypeSelector from "../public/RoomTypeSelector"
 
